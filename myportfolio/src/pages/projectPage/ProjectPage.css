@@ -1,0 +1,126 @@
+
+/* ========================= NAVBAR ========================= */
+
+.navbar {
+  width: 100%;
+  background-color: var(--color-blackpj);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 0 12px var(--color-secondarypj);
+}
+
+.navbar_container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ========== LEFT MENU ========== */
+.navbarL ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.navbarL ul li a {
+  text-decoration: none;
+  color: var(--color-primarypj);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbarL ul li a:hover {
+  color: var(--color-highlightpj);
+}
+
+/* ========== CENTER LOGO ========== */
+.navbar_logo {
+  color: var(--color-accentpj);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-shadow: 0 0 6px var(--color-accentpj);
+  transition: all 0.3s ease;
+}
+
+.navbar_logo:hover {
+  color: var(--color-highlightpj);
+  text-shadow: 0 0 8px var(--color-highlightpj);
+}
+
+/* ========== RIGHT ICON MENU ========== */
+.navbarR ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.navbarR img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+.navbarR img:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 6px var(--color-secondarypj));
+}
+
+/* ========== MENU ICON (MOBILE) ========== */
+.menu_icon {
+  display: none;
+  cursor: pointer;
+}
+
+.menu_icon img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 850px) {
+  .navbarL ul,
+  .navbarR ul {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    background: var(--color-card-bgpj);
+    padding: 1rem 0;
+    gap: 1.5rem;
+    align-items: center;
+    transition: transform 0.3s ease;
+    transform: translateY(-150%);
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+  }
+
+  .menu_icon {
+    display: block;
+  }
+
+  .navbarL ul li a,
+  .navbarR ul li a {
+    font-size: 1.2rem;
+  }
+
+  .navbarR img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
+
