@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React from 'react'
 import "./index.css";
-import NavBar from './components/navbar/Navbar'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import HomePage from './pages/homePage/HomePage'
+import { PATHTO } from "./PathTO";
+import NavBar from './components/navbar/Navbar';
 
 function App() {
 
@@ -11,7 +11,11 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" exact Component={HomePage} />
+        <Route path={PATHTO.homepage.path} Component={PATHTO.homepage.component} />
+        <Route path={PATHTO.aboutpage.path} Component={PATHTO.aboutpage.component} />
+        <Route path={PATHTO.projectpage.path} Component={PATHTO.projectpage.component} />
+        <Route path={PATHTO.projectcat.path} Component={PATHTO.projectcat.component} />
+        <Route path={PATHTO.projectsubcat.path} Component={PATHTO.projectsubcat.component} />
       </Routes>
     </Router>
     </>

@@ -1,0 +1,27 @@
+.textani-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.textani-wrapper.left {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.textani-wrapper.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.textani-wrapper.right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.textani-wrapper p {
+  margin: 0;
+  line-height: 0;
+}

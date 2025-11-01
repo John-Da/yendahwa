@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "My First Pico8",
+    "category": "games",
+    "tags": ["pico8"],
+    "image": "/pico8/g1/myfirstgame.p8.png",
+    "pathTo": "/pico8/g1/firstgame.html",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+  },
+  {
+    "id": 2,
+    "title": "UX/UI Prototype",
+    "category": "uxui",
+    "tags": ["Figma", "UX/UI", "Graphic Design"],
+    "image": "",
+    "pathTo": "",
+    "description": ""
+  },
+  {
+    "id": 3,
+    "title": "DetectTO - Mobile Application",
+    "category": "software",
+    "tags": ["android", "object detection", "apk", "onnxruntime"],
+    "image": "",
+    "pathTo": "",
+    "description": ""
+  },
+  {
+    "id": 4,
+    "title": "Tech Web Page",
+    "category": "web",
+    "tags": ["html", "css", "javascript", "bootstrap 4", "git"],
+    "image": "",
+    "pathTo": "",
+    "description": ""
+  },
+  {
+    "id": 5,
+    "title": "DetectTO - Mobile Web-Based APK",
+    "category": "software",
+    "tags": ["react native", "flask", "python", "typescript", "object detection", "onnxruntime"],
+    "image": "",
+    "pathTo": "",
+    "description": ""
+  }
+]
