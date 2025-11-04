@@ -1,4 +1,5 @@
 
+
 /* === Base Button Style === */
 .btn {
   outline: none;
@@ -55,7 +56,7 @@
 .gBtn--primary:hover,
 .gBtn--outline:hover {
   cursor: pointer;
-  background-color: var(--color-highlightpj);
+  background-color: var(--color-highlight2pj);
   color: var(--color-text-primarypj);
   border-color: var(--color-highlightpj);
 }

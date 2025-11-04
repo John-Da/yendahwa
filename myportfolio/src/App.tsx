@@ -12,7 +12,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path={PATHTO.homepage.path} Component={PATHTO.homepage.component} />
-        <Route path={PATHTO.aboutpage.path} Component={PATHTO.aboutpage.component} />
+        <Route path={PATHTO.gamemode.path} Component={PATHTO.gamemode.component} />
         <Route path={PATHTO.projectpage.path} Component={PATHTO.projectpage.component} />
         <Route path={PATHTO.projectcat.path} Component={PATHTO.projectcat.component} />
         <Route path={PATHTO.projectsubcat.path} Component={PATHTO.projectsubcat.component} />

@@ -6,7 +6,7 @@ import { Button } from '../../button/Button'
 function ContactSection() {
   return (
     <>
-      <div className="contact-container">
+      <div className="contact-container" id='contact'>
         <div className="contact-header">
           <h1>Contact Me</h1>
           <hr />

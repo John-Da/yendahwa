@@ -3,7 +3,7 @@ import "../../index.css"
 import "./Footer.css"
 import { SOCIALICONS, SKILLICONS } from '../../assets/iconsvg/iconList';
 import { Link } from 'react-router-dom';
-import { PATHTO } from '../../PathTO';
+import { PATHTO, SOCIALLINKS } from '../../PathTO';
 
 
 function Footer({footerFor}) {
@@ -13,10 +13,10 @@ function Footer({footerFor}) {
         <div className='footer-container'>
             <span>© 2025 | @dada's Portfolio |</span>
             <ul>
-                <li><Link to={PATHTO["gh"]}><img src={SKILLICONS['gh']} alt="GitHub" /></Link></li>
-                <li><Link to={PATHTO["fb"]}><img src={SOCIALICONS['fb']} alt="Facebook" /></Link></li>
-                <li><Link to={PATHTO["ig"]}><img src={SOCIALICONS['ig']} alt="Instagram" /></Link></li>
-                <li><Link to={PATHTO["at"]}><img src={SOCIALICONS['at']} alt="Thread" /></Link></li>
+                <li><a target='_blank' href={SOCIALLINKS.gh}><img src={SKILLICONS['gh']} alt="GitHub" /></a></li>
+                <li><a target='_blank' href={SOCIALLINKS.fb}><img src={SOCIALICONS['fb']} alt="Facebook" /></a></li>
+                <li><a target='_blank' href={SOCIALLINKS.ig}><img src={SOCIALICONS['ig']} alt="Instagram" /></a></li>
+                <li><a target='_blank' href={SOCIALLINKS.th}><img src={SOCIALICONS['at']} alt="Thread" /></a></li>
             </ul>
         </div>
     ):(
@@ -24,10 +24,10 @@ function Footer({footerFor}) {
             <span>© 2025 | @dada's Portfolio |</span>
             <span>
                 <ul>
-                    <li><Link to={PATHTO["gh"]}><img src={SKILLICONS['gh']} alt="GitHub" /></Link></li>
-                    <li><Link to={PATHTO["fb"]}><img src={SOCIALICONS['fb']} alt="Facebook" /></Link></li>
-                    <li><Link to={PATHTO["ig"]}><img src={SOCIALICONS['ig']} alt="Instagram" /></Link></li>
-                    <li><Link to={PATHTO["at"]}><img src={SOCIALICONS['at']} alt="Thread" /></Link></li>
+                    <li><a target='_blank' href={SOCIALLINKS.gh}><img src={SKILLICONS['gh']} alt="GitHub" /></a></li>
+                    <li><a target='_blank' href={SOCIALLINKS.fb}><img src={SOCIALICONS['fb']} alt="Facebook" /></a></li>
+                    <li><a target='_blank' href={SOCIALLINKS.ig}><img src={SOCIALICONS['ig']} alt="Instagram" /></a></li>
+                    <li><a target='_blank' href={SOCIALLINKS.th}><img src={SOCIALICONS['at']} alt="Thread" /></a></li>
                 </ul>
             </span>
         </div>

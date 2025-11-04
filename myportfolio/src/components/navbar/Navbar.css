@@ -1,34 +1,43 @@
 
 /* === NAVBAR === */
 .home-navbar {
-  width: 100%;
+  width: 81%;
   height: 80px;
-  margin-top: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: relative;
-  top: 0;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
   color: var(--color-primary);
-  border-bottom: 2px solid var(--color-primary);
+  
+  /* --- Glass effect --- */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
+
 
 /* === DESKTOP NAVBAR CONTAINER === */
 .hnavbar_container {
   width: 100%;
-  max-width: 1600px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
-  margin-bottom: 1.5rem;
+  padding: 0 2rem;
 }
 
 /* === LEFT MENU (EDGE LEFT) === */
 .hnavbarL {
-  flex: 1;
   display: flex;
-  justify-content: flex-start;
 }
 
 .hnavbarL ul {
@@ -75,9 +84,7 @@
 
 /* === RIGHT ICONS (EDGE RIGHT) === */
 .hnavbarR {
-  flex: 1;
   display: flex;
-  justify-content: flex-end;
 }
 
 .hnavbarR ul {
@@ -100,6 +107,7 @@
   transform: scale(1.1);
   filter: brightness(0) saturate(100%) invert(88%) sepia(14%) saturate(567%) hue-rotate(346deg) brightness(101%) contrast(92%);
 }
+
 
 
 /* === MOBILE MENU ICON === */
@@ -282,6 +290,7 @@
 
 /* Logo */
 .pnavbar_logo {
+  font-family:'Times New Roman', Times, serif;
   color: var(--color-primary);
   font-weight: 700;
   text-decoration: none;

@@ -6,12 +6,12 @@ import SplitTextJS from "split-text-js";
 
 function TextAnimation({
   texts = ["Web Developer", "2D/3D Animator", "Software Engineer", "UX/UI Designer"],
-  color = "--color-accent",
-  last = "--color-accent",
+  color = "var(--color-accent)",
+  last = "var(--color-accent)",
   bold = true,
   fontSize = 2,
-  align = "center", 
-  gap = 0, 
+  align = "center",
+  gap = 0,
   t = 2.8,
 }) {
   const wrapperRef = useRef(null);
@@ -23,30 +23,37 @@ function TextAnimation({
     elements.forEach((el) => {
       const split = new SplitTextJS(el);
 
-      tl.from(split.chars, {
-        opacity: 0,
-        rotateX: -90,
-        stagger: 0.02,
-        duration: 0.6,
-        y: 30,
-      }, "<");
+      tl.from(
+        split.chars,
+        {
+          opacity: 0,
+          rotateY: -90,
+          stagger: 0.02,
+          duration: 0.6,
+          y: 30,
+        },
+        "<"
+      );
 
-      tl.to(split.chars, {
-        opacity: 0,
-        rotateX: 90,
-        stagger: 0.02,
-        duration: 0.6,
-        y: -30,
-      }, `<${t}`);
+      tl.to(
+        split.chars,
+        {
+          opacity: 0,
+          rotateY: 90,
+          stagger: 0.02,
+          duration: 0.6,
+          y: -30,
+        },
+        `+=${t}`
+      );
     });
-  }, []);
+  }, [t]);
 
   return (
     <div
       className={`textani-wrapper ${align}`}
-      style={{ 
-        height: `${fontSize * 1.5}rem`
-    }}>
+      style={{ height: `${fontSize * 1.5}rem`, gap: `${gap}rem` }}
+    >
       <div className="txt" ref={wrapperRef}>
         {texts.map((text, index) => (
           <p

@@ -6,7 +6,7 @@ import { PATHTO, SOCIALLINKS } from "../../PathTO";
 import { MENUICON, SOCIALICONS, SKILLICONS } from '../../assets/iconsvg/iconList';
 
 /* ---------------- HOME NAVBAR ---------------- */
-export function HomeNavBar() {
+export function HomeNavBar({author}) {
   const [click, setClick] = useState(false);
   const handleMenuToggle = () => setClick(!click);
   const handleCloseMenu = () => setClick(false);
@@ -18,13 +18,13 @@ export function HomeNavBar() {
         <div className="hnavbarL">
           <ul>
             <li><Link to={PATHTO.homepage.path}>Home</Link></li>
-            <li><Link to={PATHTO.aboutpage.path}>About Me</Link></li>
-            <li><Link to={PATHTO.projectpage.path}>Projects</Link></li>
+            <li><Link to={PATHTO.aboutpage.path}>About</Link></li>
+            <li><Link to={PATHTO.projectpage.path}>Work</Link></li>
           </ul>
         </div>
 
         <div className="hnavbar_logo_container">
-          <Link to={PATHTO.homepage.path} className="navbar_logo">@dada's</Link>
+          <Link to={PATHTO.homepage.path} className="navbar_logo">@{author}</Link>
         </div>
 
         <div className="hnavbarR">
@@ -39,7 +39,7 @@ export function HomeNavBar() {
 
       {/* MOBILE NAVBAR */}
       <div className='nav-mobile'>
-        <Link to={PATHTO.homepage.path} className="navbar_logo">@dada's</Link>
+        <Link to={PATHTO.homepage.path} className="navbar_logo">@{author}</Link>
         <div className="menu_icon" onClick={handleMenuToggle}>
           <img src={click ? MENUICON['cross'] : MENUICON['menu']} alt="Menu" />
         </div>
@@ -50,8 +50,8 @@ export function HomeNavBar() {
         <div className="mobile-menu-content">
           <div className="nav-menu">
             <Link to={PATHTO.homepage.path} onClick={handleCloseMenu}>Home</Link>
-            <Link to={PATHTO.aboutpage.path} onClick={handleCloseMenu}>About Me</Link>
-            <Link to={PATHTO.projectpage.path} onClick={handleCloseMenu}>Projects</Link>
+            <Link to={PATHTO.aboutpage.path} onClick={handleCloseMenu}>About</Link>
+            <Link to={PATHTO.projectpage.path} onClick={handleCloseMenu}>Work</Link>
           </div>
 
           <div className="social-icons">
@@ -67,22 +67,19 @@ export function HomeNavBar() {
 }
 
 /* ---------------- ABOUT NAVBAR ---------------- */
-function AboutNavBar() {
+function GameModeNavBar() {
   return (
-    <nav className="about-navbar">
-      <div className="anavbar_container">
-        <Link to={PATHTO.homepage.path} className="navbar_logo">@dada's</Link>
-        <div className="anavbar_about_links">
-          <Link to={PATHTO.projectpage.path}>My Works</Link>
-          <Link to={PATHTO.homepage.path}>Back Home</Link>
-        </div>
+    <nav className="gamemode-navbar">
+      <div className="gamemode_navbar_container">
+        <Link to={`${PATHTO.projectpage.path}/games`} className="navbar_logo">ESC</Link>
+        {/* <button onClick={"close gameViewSelection && gameInformation"}>{closeGameInfo? "Show Description" : "Hide Description"}</button> */}
       </div>
     </nav>
   );
 }
 
 /* ---------------- PROJECT NAVBAR ---------------- */
-function ProjectsNavBar() {
+function ProjectsNavBar({author}) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -109,7 +106,7 @@ function ProjectsNavBar() {
     <nav className="projects-navbar">
       <div className="pnavbar_container">
         {/* Logo */}
-        <Link to="/" className="pnavbar_logo">@Projects</Link>
+        <Link to="/" className="pnavbar_logo">@{author}</Link>
 
         {/* Center Navigation */}
         <div className="projectNav">
@@ -168,17 +165,36 @@ function NavBar() {
   const location = useLocation();
   const path = location.pathname;
 
-  let navbarFor = "home";
-  if (path.includes("about")) navbarFor = "about";
-  else if (path.includes("project")) navbarFor = "projects";
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    fetch('/ProfileInfo.json')
+      .then(res => res.json())
+      .then(data => {
+        setTimeout(() => {
+          setProfile(data); 
+        }, 500);
+      });
+  }, []);
+
+  if (!profile) return <div className="loading">Loading...</div>;
+
+  const author = profile.author.toLowerCase();
+  const getNavbarType = (pathname) => {
+    if (pathname.startsWith("/projects/games/play")) return "none";
+    if (pathname.startsWith("/projects")) return "projects";
+    return "home";
+  };
+
+  const navbarFor = getNavbarType(path);
 
   switch (navbarFor) {
-    case "about":
-      return <AboutNavBar />;
+    case "home":
+      return <HomeNavBar author={author} />;
     case "projects":
-      return <ProjectsNavBar />;
-    default:
-      return <HomeNavBar />;
+      return <ProjectsNavBar author={author} />;
+    case "none":
+      return null;
   }
 }
 

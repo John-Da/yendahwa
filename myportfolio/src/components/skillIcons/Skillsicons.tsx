@@ -3,12 +3,17 @@ import "../../index.css"
 import './Skillsicons.css'
 import { SKILLICONS } from '../../assets/iconsvg/iconList'
 
-function Skillsicons({ timer = 20, timeFunc = "linear", iteration = "infinite" }) {
+function Skillsicons({ 
+  timer = 20, 
+  timeFunc = "linear", 
+  iteration = "infinite", 
+  startFrom = "right"
+}) {
   const keys = Object.keys(SKILLICONS);
   const total = keys.length;
 
   return (
-    <div className="skillIcon-wrapper">
+    <div className={`skillIcon-wrapper ${startFrom}`}>
       {keys.map((key, index) => {
         const delay = ((timer / total) * (total - index)) * -1;
 
