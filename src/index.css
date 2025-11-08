@@ -1,0 +1,70 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  background-color: var(--color-base);
+
+  /* Core theme */
+  --color-base: #1A1D1F;
+  --color-surface: #2B2B2B;
+  --color-surface-alt: #161616;
+  
+  /* Brand tones */
+  --color-primary: #D4A373;
+  --color-secondary: #8B5E3C;
+  --color-accent: #E6CBA8;
+  
+  /* Text */
+  --color-text-primary: #F8F5F0;
+  --color-text-secondary: #B8B2A9;
+  --color-text-muted: #AAAAAA;
+  
+  /* Interactive / FX */
+  --color-glow: #39FF14;
+  --color-link: #646cff;
+  --color-highlight: #FFD700;
+  
+  /* Utility */
+  --color-black: #0C0C0C;
+  --color-white: #F8F8F8;
+}
+
+*,
+*::after,
+*::before{
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0 10rem;
+}
+
+body.gameview {
+  background-color: var(--color-base);
+  color: var(--color-text-primary);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+

@@ -1,0 +1,114 @@
+/* === Base Button Style === */
+.btn,
+.gBtn {
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease-in-out;
+  backdrop-filter: blur(6px);
+}
+
+/* --- Portfolio / Default Buttons --- */
+.btn--primary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 0 10px rgba(212, 163, 115, 0.3);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+/* Hover for portfolio buttons */
+.btn--primary:hover,
+.btn--outline:hover {
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--color-highlight), var(--color-accent));
+  color: var(--color-black);
+  border-color: var(--color-highlight);
+  box-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+/* --- Game Buttons (neon / time effect style) --- */
+.gBtn--primary {
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, var(--color-glow) 0%, #00aaff 100%);
+  color: var(--color-black);
+  border: 1px solid var(--color-glow);
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.gBtn--outline {
+  position: relative;
+  background: rgba(15, 15, 15, 0.3);
+  color: var(--color-glow);
+  border: 1px solid var(--color-glow);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* subtle moving light streak inside button */
+.gBtn--primary::before,
+.gBtn--outline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.gBtn--primary:hover::before,
+.gBtn--outline:hover::before {
+  left: 150%;
+  opacity: 1;
+}
+
+/* Hover for game buttons */
+.gBtn--primary:hover,
+.gBtn--outline:hover {
+  cursor: pointer;
+  background: radial-gradient(circle at 70% 70%, var(--color-glow) 100%);
+  color: var(--color-black);
+  border-color: var(--color-link);
+  box-shadow:
+    0 0 8px var(--color-link),
+    0 0 18px var(--color-glow);
+  transform: scale(1.07);
+}
+
+/* Active state for tactile feedback */
+.gBtn--primary:active,
+.gBtn--outline:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 8px var(--color-link);
+}
+
+
+/* --- Sizes --- */
+.btn--medium,
+.gBtn--medium {
+  font-size: 1rem;
+  padding: 10px 22px;
+}
+
+.btn--large,
+.gBtn--large {
+  font-size: 1.1rem;
+  padding: 14px 28px;
+}

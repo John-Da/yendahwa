@@ -1,0 +1,451 @@
+
+.hcard-container {
+    position: relative;
+    width: 100%;
+    max-width: 750px;
+    height: 600px;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* On hover: zoom and subtle lift */
+.hcard-container:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+/* Image Box */
+.hcard-container .img-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Image style */
+.hcard-container .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+/* Zoom and darken the image slightly on hover */
+.hcard-container:hover .img-box img {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+}
+
+/* Hover overlay (dark fade) */
+.hcard-container .img-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.hcard-container:hover .img-box::after {
+    opacity: 1;
+}
+
+/* Title styling */
+.hcard-container .img-box h2 {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
+    font-size: 1.3rem;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.hcard-container:hover .img-box h2 {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* ↗ Hover icon */
+.hcard-container .img-box span {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8rem;
+    opacity: 0;
+    color: #fff;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hcard-container:hover .img-box span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Placeholder text if no image */
+.hcard-container .img-box p {
+    color: #fff;
+    font-size: 1.1rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.hcard-container:hover .img-box p {
+    opacity: 0.5;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.hcard-container:hover .img-box span {
+  animation: floatIcon 1.2s ease-in-out infinite;
+}
+
+
+/* Make the entire link area clickable */
+.card-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure the image & icon are inside the clickable link */
+.card-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 15px;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+.card-link span {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  opacity: 0;
+  color: #fff;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hcard-container:hover .card-link span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fix z-index layers so the title is on top */
+.hcard-container .img-box h2 {
+  position: absolute;
+  z-index: 3;
+}
+
+
+/* Card container */
+.pcard-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 430px;
+    height: auto;
+    background-color: #333;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 0.3px solid var(--color-secondary);
+}
+
+.pcard-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+
+/* Image */
+.pcard-img {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pcard-img p{
+    text-align: center;
+}
+
+.pcard-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.pcard-container:hover .pcard-img img {
+    transform: scale(1.05);
+}
+
+/* Description */
+.pcard-description {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-top: 0.8px solid var(--color-secondary);
+}
+
+.pcard-description h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+}
+
+.pcard-description p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* Tags */
+.item-tag {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 0.2rem 0.5rem;
+    margin: 0.2rem 0.1rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pcard-container {
+        min-height: 450px;
+    }
+    .pcard-img {
+        height: 200px;
+    }
+    .detail-content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .detailsView-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .projectImage img {
+        max-width: 100%;
+    }
+}
+
+
+
+/* Overlay container */
+.close-box {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
+}
+
+.close-box:hover {
+    transform: rotate(90deg);
+}
+
+.close-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1) brightness(0) saturate(100%) invert(76%) sepia(33%) saturate(450%) hue-rotate(352deg) brightness(94%) contrast(86%);
+}
+
+
+.projectDetailView-container {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    backdrop-filter: blur(4px);
+    pointer-events: auto;
+}
+
+.projectDetailView-container.hidden {
+  display: none;
+  pointer-events: none;
+}
+
+/* Detail content */
+.detail-content {
+    background: #222;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 800px;
+    min-height: auto;
+    display: block;
+    padding: 1rem 0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease;
+}
+
+
+/* Header */
+.detailsView-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--color-secondary);
+    padding: 0 2rem 1rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.detailsView-header h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* Project image */
+.detail-content .projectImage {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.detail-content .projectImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+/* Description */
+.detailDescription {
+    width: 100%;
+    color: #ccc;
+    line-height: 1.6;
+    text-align: left;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+}
+
+.detailDescription p {
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+}
+
+.detailDescription .demonBtn{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.detailsView-footer {
+    width: 100%;
+    height: 2rem;
+    border-top: 1px solid var(--color-secondary);
+    margin-top: 1rem;
+}
+
+.detailsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+
+    padding: 0.5rem 2rem;
+    border-top: 1px solid var(--color-secondary);
+    width: 100%;
+}
+
+.detailsContainer h2{
+    text-align: left;
+    width: 100%;
+    padding: 1rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.detailsGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: start;
+}
+
+.detailsItem{
+    display: flex;
+    gap: 0.6rem;
+    width: auto;
+}
+
+.detailsItem .label{
+    font-weight: 600; 
+    color: var(--color-text-primary); 
+    white-space: nowrap;
+}
+
+.detailsItem .value { 
+  color: var(--color-accentpj);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.detailsItem .tags{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.detailsItem .tags span{
+    background-color: var(--color-secondary); 
+    color: var(--color-text-primary); 
+    padding: 0.3rem 0.6rem; 
+    border-radius: 6px; 
+    font-size: 0.85rem; 
+    width: auto;
+}
+

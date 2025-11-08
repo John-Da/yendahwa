@@ -1,0 +1,69 @@
+
+
+.slideTrack {
+  width: 260px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.slideTrack,
+.sliderBtn,
+.slideTrack p {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.sliderBtn.glow {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8),
+              0 0 50px rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
+  transition: box-shadow 0.3s ease, background 0.3s ease, left 0.3s ease;
+}
+
+.slideTrack p {
+  z-index: 1;
+  color: rgba(255,255,255,0.8);
+  font-size: 1rem;
+}
+
+.sliderBtn {
+  width: 85px;
+  height: 55px;
+  position: absolute;
+  left: 4px;
+  border-radius: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  cursor: grab;
+  transition: transform 0.2s ease;
+}
+
+.sliderBtn img {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin: 0 auto;
+  filter: brightness(0) invert(1) drop-shadow(0 0 5px rgba(255,255,255,0.6));
+  pointer-events: none;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.sliderBtn:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}

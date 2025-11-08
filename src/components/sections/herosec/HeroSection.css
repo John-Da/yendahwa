@@ -1,0 +1,373 @@
+
+
+.home-hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-primary);
+  background-color: var(--color-base);
+}
+
+.home-hero .textbox{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.home-hero h1 {
+  font-size: 1.3rem;
+  min-width: 12rem;
+  text-align: left;
+}
+
+.home-hero .herotxt {
+  max-width: auto;
+  margin: 0 2rem;
+  line-height: 1.6;
+  font-size: 2.2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+  white-space: pre-line;
+}
+
+.hhero-btn {
+  padding: 0.6rem 1.4rem;
+  letter-spacing: 0.5px;
+  outline: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.25s ease-in-out;
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hhero-btn:hover {
+  cursor: pointer;
+  background-color: var(--color-secondary);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (min-width: 768px) {
+  .home-hero p {
+    font-size: 1.2rem;
+    white-space: pre-line;
+  }
+}
+
+.quick-about {
+  width: 100%;
+  background: var(--color-base);
+  padding: 4rem 2rem;
+  color: var(--color-text-primary);
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.quick-about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, minmax(260px, auto));
+  gap: 25px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* common box styling */
+.quick-about-grid > div {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+.quick-about-grid > div:hover img,
+.quick-about-grid > div:hover video {
+  transform: scale(1.1);
+  transition: transform 1s ease;
+}
+
+.quick-about-grid img,
+.quick-about-grid video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 1s ease;
+}
+
+.hightlightsbox:hover img,
+.timezonebox:hover img,
+.gamemodebox:hover video,
+.toolsbox:hover img,
+.recentbox:hover img {
+  transform: scale(1.1);
+}
+
+
+/* individual box layout */
+.hightlightsbox {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+
+.hightlightcontent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.highlight-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.highlight-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.highlight-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+/* timezone box */
+.timezonebox {
+  grid-column: 1;
+  grid-row: 2 / span 2;
+  position: relative;
+  overflow: hidden;
+}
+
+/* background image behind blur */
+.timezonebg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.timezonebg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+
+/* main content layer */
+.timezonecontent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 2rem;
+  box-sizing: border-box;
+  color: white;
+}
+
+/* 🧭 top-centered title */
+.context {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+.context h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-highlight2pj);
+  margin-bottom: 0.3rem;
+}
+
+.context p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.timezonecontent .timeZone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+}
+
+.timezonecontent .timeZone span {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.timezonecontent .timeZone span:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+}
+
+/* Center span larger + slightly more emphasis */
+.timezonecontent .timeZone .tCenter {
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* gamemode box */
+.gamemodebg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.gamemodebg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gamemodecontent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.gameModeBtnBox {
+  margin-top: 2rem;
+}
+
+
+/* tools box */
+.toolsbox {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: make background fill the box */
+.toolsbg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  z-index: 1;
+}
+
+.toolscontent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  box-sizing: border-box;
+}
+
+.toolscontent h2 {
+  color: var(--color-highlight2pj);
+  font-weight: 800;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.toolscontent h3{
+  color: var(--color-card-bgpj);
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.toolscontent .skills-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* recent box */
+.recentbox {
+  grid-column: 2 / span 2;
+  grid-row: 3;
+}
+.recentcontent {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  z-index: 2;
+}
+
+
+/* 📱 responsive stacking */
+@media (max-width: 768px) {
+  .context h2 {
+    font-size: 1.5rem;
+  }
+
+  .timezonecontent .timeZone span {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem;
+  }
+}
+
+
+
+@media (max-width: 1024px) {
+  .toolsbox {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  .toolscontent {
+    padding: 1.5rem;
+  }
+  .toolscontent h2 {
+    font-size: 1.5rem;
+  }
+}
