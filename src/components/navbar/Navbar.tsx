@@ -93,28 +93,28 @@ function ProjectsNavBar({ author }: { author: string }) {
     <nav className="projects-navbar">
       <div className="pnavbar_container">
         {/* Logo */}
-        <Link to={`${import.meta.env.BASE_URL}`} className="pnavbar_logo">@{author}</Link>
+        <Link to={PATHTO.homepage.path} className="pnavbar_logo">@{author}</Link>
 
         {/* Center Navigation */}
         <div className="projectNav">
-          <Link to={`${import.meta.env.BASE_URL}projects`} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects`)}`}>All Projects</Link>
-          <Link to={`${import.meta.env.BASE_URL}projects/games`} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects/games`)}`}>Games</Link>
-          <Link to={`${import.meta.env.BASE_URL}projects/web`} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects/web`)}`}>Web Developments</Link>
+          <Link to={`/projects`} className={`pnavbarC ${isActive(`/projects`)}`}>All Projects</Link>
+          <Link to={`/projects/games`} className={`pnavbarC ${isActive(`/projects/games`)}`}>Games</Link>
+          <Link to={`/projects/web`} className={`pnavbarC ${isActive(`/projects/web`)}`}>Web Developments</Link>
 
           {/* Design Dropdown */}
           <div className="designDropDown">
-            <div className={`designTags ${isActive(`${import.meta.env.BASE_URL}projects/design`)}`} onClick={() => setIsOpen(!isOpen)}>
+            <div className={`designTags ${isActive(`/projects/design`)}`} onClick={() => setIsOpen(!isOpen)}>
               <span>Design</span>
               <span className="arrow">{isOpen ? "▲" : "▼"}</span>
             </div>
             <div className={`dropdownContent ${isOpen ? "open" : ""}`}>
-              <Link to={`${import.meta.env.BASE_URL}projects/design/uxui`} onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects/design/uxui`)}`}>UX/UI Design</Link>
-              <Link to={`${import.meta.env.BASE_URL}projects/design/graphic`} onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects/design/graphic`)}`}>Graphic Design</Link>
-              <Link to={`${import.meta.env.BASE_URL}projects/design/animation`} onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects/design/animation`)}`}>2D/3D Animation</Link>
+              <Link to={`/projects/design/uxui`} onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive(`/projects/design/uxui`)}`}>UX/UI Design</Link>
+              <Link to={`/projects/design/graphic`} onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive(`/projects/design/graphic`)}`}>Graphic Design</Link>
+              <Link to={`/projects/design/animation`} onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive(`/projects/design/animation`)}`}>2D/3D Animation</Link>
             </div>
           </div>
 
-          <Link to={`${import.meta.env.BASE_URL}projects/software`} className={`pnavbarC ${isActive(`${import.meta.env.BASE_URL}projects/software`)}`}>Software Developments</Link>
+          <Link to={`/projects/software`} className={`pnavbarC ${isActive(`/projects/software`)}`}>Software Developments</Link>
         </div>
 
         {/* Right Side Social */}
@@ -148,8 +148,8 @@ function NavBar() {
 
   const author = profile.author.toLowerCase();
   const getNavbarType = (pathname: string) => {
-    if (pathname.startsWith(`${import.meta.env.BASE_URL}projects/games/play`)) return "none";
-    if (pathname.startsWith(`${import.meta.env.BASE_URL}projects`)) return "projects";
+    if (pathname.startsWith(`/projects/games/play`)) return "none";
+    if (pathname.startsWith(`/projects`)) return "projects";
     return "home";
   };
 
