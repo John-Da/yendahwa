@@ -1,6 +1,6 @@
 import "../../index.css";
 import "./Button.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { type ButtonHTMLAttributes } from "react";
 
 const STYLES = ["btn--primary", "btn--outline", "gBtn--primary", "gBtn--outline"];
@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   if (path) {
     return (
-      <a href={path} target="_blank" rel="noopener noreferrer">
+      <Link to={path}>
         <button
           className={`${btnType} ${checkButtonStyle} ${checkButtonSize}`}
           onClick={onClick}
@@ -38,7 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
         >
           {children}
         </button>
-      </a>
+      </Link>
     );
   }
 
