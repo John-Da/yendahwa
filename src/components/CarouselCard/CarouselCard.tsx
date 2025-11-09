@@ -33,7 +33,7 @@ export default function CarouselCard({
     if (!games[currentIndex]?.image) return;
 
     const img = new Image();
-    img.src = games[currentIndex].image as string;
+    img.src = `${import.meta.env.BASE_URL}${games[currentIndex].image}`;
     img.crossOrigin = "anonymous";
 
     img.onload = () => {
@@ -95,7 +95,7 @@ export default function CarouselCard({
         {games.map((game: Project, index: number) => (
           <div key={index} className={getClassName(index)}>
             {game.image && game.image.trim() !== "" ? (
-              <img src={game.image} alt={game.title} />
+              <img src={`${import.meta.env.BASE_URL}${game.image}`} alt={game.title} />
             ) : (
               <p>Empty Image</p>
             )}

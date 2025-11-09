@@ -93,7 +93,7 @@ function Card({ cardFor, btnName, projectItems, onClick }: CardProps) {
               <div className="card-link">
                 {projectItems.image ? (
                   <>
-                    <img src={projectItems.image} alt={projectItems.title} />
+                    <img src={`${import.meta.env.BASE_URL}${projectItems.image}`} alt={projectItems.title} />
                     <span>↗</span>
                   </>
                 ) : (
@@ -126,7 +126,7 @@ function Card({ cardFor, btnName, projectItems, onClick }: CardProps) {
 
                 <div className="projectImage">
                   {projectItems.image ? (
-                    <img src={projectItems.image} alt={projectItems.title} />
+                    <img src={`${import.meta.env.BASE_URL}${projectItems.image}`} alt={projectItems.title} />
                   ) : (
                     <p>Empty Image</p>
                   )}
@@ -171,7 +171,7 @@ function Card({ cardFor, btnName, projectItems, onClick }: CardProps) {
         <div className="pcard-container" onClick={onClick}>
           <div className="pcard-img">
             {projectItems.image ? (
-              <img src={projectItems.image} alt={projectItems.title} />
+              <img src={`${import.meta.env.BASE_URL}${projectItems.image}`} alt={projectItems.title} />
             ) : (
               <p>Empty Image</p>
             )}

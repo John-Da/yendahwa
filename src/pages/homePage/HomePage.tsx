@@ -20,22 +20,26 @@ function HomePage() {
 
   useEffect(() => {
     setLoading(true);
+
+    const baseUrl = import.meta.env.BASE_URL;
+
     Promise.all([
-      fetch(`${import.meta.env.BASE_URL}ProfileInfo.json`).then(res => res.ok ? res.json() : Promise.reject('Profile fetch failed')),
-      fetch(`${import.meta.env.BASE_URL}ProjectDetails.json`).then(res => res.ok ? res.json() : Promise.reject('Project fetch failed'))
+      fetch(`${baseUrl}ProfileInfo.json`)
+        .then(res => res.ok ? res.json() : Promise.reject('Profile fetch failed')),
+      fetch(`${baseUrl}ProjectDetails.json`)
+        .then(res => res.ok ? res.json() : Promise.reject('Project fetch failed'))
     ])
-      .then(([profileData, projectData]) => {
-        setTimeout(() => {
-          setProfile(profileData);
-          setProject(projectData);
-          setLoading(false);
-        }, 500);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
+    .then(([profileData, projectData]) => {
+      setProfile(profileData);
+      setProject(projectData);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error("Error fetching JSON data:", err);
+      setLoading(false);
+    });
   }, [location.pathname]);
+
 
   if (loading) return <div className="loading"></div>;
 

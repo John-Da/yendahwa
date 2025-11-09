@@ -47,7 +47,7 @@ function GameView() {
   const handleSelectGame = (game: Project) => {
     setProject(game);
     navigate(
-      `/projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`,
+      `${import.meta.env.BASE_URL}projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`,
       { replace: false }
     );
   };
@@ -105,7 +105,7 @@ function GameView() {
         <div className="gameViewContent">
           {/* Header */}
           <div className="gameViewContent-header">
-            <Link className="game-esc" to="/projects/games">
+            <Link className="game-esc" to={`${import.meta.env.BASE_URL}projects/games`}>
               ESC
             </Link>
             <button onClick={() => setShowGameInfo((prev) => !prev)}>
@@ -134,7 +134,6 @@ function GameView() {
                 <iframe
                   key={project.id || project.title}
                   src={project.data?.demoLink}
-                  frameBorder="0"
                   allowFullScreen
                   title={project.title}
                 />
@@ -217,7 +216,7 @@ function GameView() {
                             }}
                           >
                             {game.image && game.image.trim() !== "" ? (
-                              <img src={game.image} alt={game.title} />
+                              <img src={`${import.meta.env.BASE_URL}${game.image}`} alt={game.title} />
                             ) : (
                               <p className="emptyImage">Empty Image</p>
                             )}

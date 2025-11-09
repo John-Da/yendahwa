@@ -187,7 +187,7 @@ function ProjectPageSec({
 
             <div className="projectImage">
               {selectedProject.image ? (
-                <img src={selectedProject.image} alt={selectedProject.title} />
+                <img src={`${import.meta.env.BASE_URL}${selectedProject.image}`} alt={selectedProject.title} />
               ) : (
                 <p>Empty Image</p>
               )}
