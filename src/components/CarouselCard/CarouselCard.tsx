@@ -1,7 +1,28 @@
 import { useState, useEffect } from "react";
 import "./CarouselCard.css";
 
-export default function CarouselCard({ projectList, onSelectGame, currentProject }) {
+// Define the shape of a single project/game item
+interface ProjectItem {
+  id: string | number;
+  title: string;
+  image?: string;
+  category?: string;
+  description?: string;
+  tags?: string[];
+}
+
+// Props for CarouselCard
+interface CarouselCardProps {
+  projectList: ProjectItem[];
+  onSelectGame: (game: ProjectItem) => void;
+  currentProject?: ProjectItem;
+}
+
+export default function CarouselCard({
+  projectList,
+  onSelectGame,
+  currentProject,
+}: CarouselCardProps) {
   const games = projectList || [];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [textColor, setTextColor] = useState("white");
@@ -9,7 +30,7 @@ export default function CarouselCard({ projectList, onSelectGame, currentProject
   // Detect current project index
   useEffect(() => {
     if (currentProject) {
-      const idx = games.findIndex((g) => g.id === currentProject.id);
+      const idx = games.findIndex((g: ProjectItem) => g.id === currentProject.id);
       if (idx >= 0) setCurrentIndex(idx);
     }
   }, [currentProject, games]);
@@ -19,7 +40,7 @@ export default function CarouselCard({ projectList, onSelectGame, currentProject
     if (!games[currentIndex]?.image) return;
 
     const img = new Image();
-    img.src = games[currentIndex].image;
+    img.src = games[currentIndex].image as string;
     img.crossOrigin = "anonymous";
 
     img.onload = () => {
@@ -27,17 +48,19 @@ export default function CarouselCard({ projectList, onSelectGame, currentProject
       canvas.width = img.width;
       canvas.height = img.height;
       const ctx = canvas.getContext("2d");
+
+      if (!ctx) return; // ✅ prevents null errors
+
       ctx.drawImage(img, 0, 0, img.width, img.height);
 
       const { data } = ctx.getImageData(0, 0, img.width, img.height);
-      let r, g, b, avg, colorSum = 0;
+      let colorSum = 0;
 
       for (let x = 0; x < data.length; x += 4 * 50) {
-        // Skip some pixels for performance
-        r = data[x];
-        g = data[x + 1];
-        b = data[x + 2];
-        avg = (r + g + b) / 3;
+        const r = data[x];
+        const g = data[x + 1];
+        const b = data[x + 2];
+        const avg = (r + g + b) / 3;
         colorSum += avg;
       }
 
@@ -58,7 +81,7 @@ export default function CarouselCard({ projectList, onSelectGame, currentProject
     onSelectGame(games[newIndex]);
   };
 
-  const getClassName = (index) => {
+  const getClassName = (index: number): string => {
     const total = games.length;
     const diff = (index - currentIndex + total) % total;
     if (diff === 0) return "gameItem active";
@@ -78,7 +101,7 @@ export default function CarouselCard({ projectList, onSelectGame, currentProject
       </div>
 
       <div className="imgBox carouselContainer">
-        {games.map((game, index) => (
+        {games.map((game: ProjectItem, index: number) => (
           <div key={index} className={getClassName(index)}>
             {game.image && game.image.trim() !== "" ? (
               <img src={game.image} alt={game.title} />

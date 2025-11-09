@@ -6,14 +6,35 @@ import { PATHTO } from "../../PathTO";
 import { MENUICON } from "../../assets/iconsvg/iconList";
 import { SOCIALLINKS } from "../../PathTO";
 
-function Card({ cardFor, btnName, projectItems, onClick }) {
+// Define interface for project item
+interface ProjectItem {
+  id?: string | number;
+  title: string;
+  description?: string;
+  image?: string;
+  category?: string;
+  tags?: string[];
+}
+
+// Define props for the Card component
+interface CardProps {
+  cardFor: "homepj" | "project" | string;
+  btnName?: string;
+  projectItems: ProjectItem;
+  onClick?: () => void;
+}
+
+function Card({ cardFor, btnName, projectItems, onClick }: CardProps) {
   const [showOverlay, setShowOverlay] = useState(false);
 
   const handleOpenDetail = () => setShowOverlay(true);
   const handleCloseDetail = () => setShowOverlay(false);
 
   useEffect(() => {
-    const handleEsc = (e) => e.key === "Escape" && setShowOverlay(false);
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowOverlay(false);
+    };
+
     window.addEventListener("keydown", handleEsc);
     document.body.style.overflow = showOverlay ? "hidden" : "auto";
 
@@ -98,10 +119,7 @@ function Card({ cardFor, btnName, projectItems, onClick }) {
               >
                 <div className="detailsView-header">
                   <h2>{projectItems.title}</h2>
-                  <button
-                    className="close-box"
-                    onClick={handleCloseDetail}
-                  >
+                  <button className="close-box" onClick={handleCloseDetail}>
                     <img src={MENUICON.cross} alt="close" />
                   </button>
                 </div>
@@ -115,9 +133,7 @@ function Card({ cardFor, btnName, projectItems, onClick }) {
                 </div>
 
                 <div className="detailDescription">
-                  <p>
-                    {projectItems.description || "No description available."}
-                  </p>
+                  <p>{projectItems.description || "No description available."}</p>
                   <div className="demonBtn">{renderOverlayButtons()}</div>
                 </div>
 
@@ -133,7 +149,7 @@ function Card({ cardFor, btnName, projectItems, onClick }) {
                       <p className="label">Tags:</p>
                       <div className="tags">
                         {projectItems.tags?.length ? (
-                          projectItems.tags.map((tag, index) => (
+                          projectItems.tags.map((tag: string, index: number) => (
                             <span key={index} className="tag">
                               {tag}
                             </span>
@@ -164,7 +180,7 @@ function Card({ cardFor, btnName, projectItems, onClick }) {
             <h1>{projectItems.title}</h1>
             <p>{projectItems.description || "No description yet."}</p>
             <div>
-              {projectItems.tags?.map((tag, index) => (
+              {projectItems.tags?.map((tag: string, index: number) => (
                 <span key={index} className="item-tag">
                   {tag}
                 </span>

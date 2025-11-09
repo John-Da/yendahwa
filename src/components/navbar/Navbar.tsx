@@ -6,7 +6,7 @@ import { PATHTO, SOCIALLINKS } from "../../PathTO";
 import { MENUICON, SOCIALICONS, SKILLICONS } from '../../assets/iconsvg/iconList';
 
 /* ---------------- HOME NAVBAR ---------------- */
-export function HomeNavBar({author}) {
+export function HomeNavBar({ author }: { author: string }) {
   const [click, setClick] = useState(false);
   const handleMenuToggle = () => setClick(!click);
   const handleCloseMenu = () => setClick(false);
@@ -66,27 +66,15 @@ export function HomeNavBar({author}) {
   );
 }
 
-/* ---------------- ABOUT NAVBAR ---------------- */
-function GameModeNavBar() {
-  return (
-    <nav className="gamemode-navbar">
-      <div className="gamemode_navbar_container">
-        <Link to={`${PATHTO.projectpage.path}/games`} className="navbar_logo">ESC</Link>
-        {/* <button onClick={"close gameViewSelection && gameInformation"}>{closeGameInfo? "Show Description" : "Hide Description"}</button> */}
-      </div>
-    </nav>
-  );
-}
-
 /* ---------------- PROJECT NAVBAR ---------------- */
-function ProjectsNavBar({author}) {
+function ProjectsNavBar({ author }: { author: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(".designDropDown")) {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".designDropDown")) {
         setIsOpen(false);
       }
     };
@@ -94,8 +82,7 @@ function ProjectsNavBar({author}) {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-
-  const isActive = (path) => {
+  const isActive = (path: string) => {
     if (path === "/projects") {
       return location.pathname === "/projects" ? "active" : "";
     }
@@ -121,27 +108,9 @@ function ProjectsNavBar({author}) {
               <span className="arrow">{isOpen ? "▲" : "▼"}</span>
             </div>
             <div className={`dropdownContent ${isOpen ? "open" : ""}`}>
-              <Link
-                to="/projects/design/uxui"
-                onClick={() => setIsOpen(false)}
-                className={`pnavbarC ${isActive("/projects/design/uxui")}`}
-              >
-                UX/UI Design
-              </Link>
-              <Link
-                to="/projects/design/graphic"
-                onClick={() => setIsOpen(false)}
-                className={`pnavbarC ${isActive("/projects/design/graphic")}`}
-              >
-                Graphic Design
-              </Link>
-              <Link
-                to="/projects/design/animation"
-                onClick={() => setIsOpen(false)}
-                className={`pnavbarC ${isActive("/projects/design/animation")}`}
-              >
-                2D/3D Animation
-              </Link>
+              <Link to="/projects/design/uxui" onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive("/projects/design/uxui")}`}>UX/UI Design</Link>
+              <Link to="/projects/design/graphic" onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive("/projects/design/graphic")}`}>Graphic Design</Link>
+              <Link to="/projects/design/animation" onClick={() => setIsOpen(false)} className={`pnavbarC ${isActive("/projects/design/animation")}`}>2D/3D Animation</Link>
             </div>
           </div>
 
@@ -165,22 +134,20 @@ function NavBar() {
   const location = useLocation();
   const path = location.pathname;
 
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState<{ author: string } | null>(null);
 
   useEffect(() => {
     fetch('/ProfileInfo.json')
       .then(res => res.json())
       .then(data => {
-        setTimeout(() => {
-          setProfile(data); 
-        }, 500);
+        setTimeout(() => setProfile(data), 500);
       });
   }, []);
 
   if (!profile) return <div className="loading">Loading...</div>;
 
   const author = profile.author.toLowerCase();
-  const getNavbarType = (pathname) => {
+  const getNavbarType = (pathname: string) => {
     if (pathname.startsWith("/projects/games/play")) return "none";
     if (pathname.startsWith("/projects")) return "projects";
     return "home";
@@ -193,7 +160,7 @@ function NavBar() {
       return <HomeNavBar author={author} />;
     case "projects":
       return <ProjectsNavBar author={author} />;
-    case "none":
+    default:
       return null;
   }
 }
