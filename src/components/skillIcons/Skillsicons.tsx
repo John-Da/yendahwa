@@ -1,4 +1,3 @@
-import React from 'react'
 import "../../index.css"
 import './Skillsicons.css'
 import { SKILLICONS } from '../../assets/iconsvg/iconList'

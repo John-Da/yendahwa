@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import "../../../index.css";
 import "./ProjectSec.css";
 import { Button } from '../../button/Button';

@@ -1,4 +1,3 @@
-import React from 'react'
 import "../../index.css"
 import "./Footer.css"
 import { SOCIALICONS, SKILLICONS } from '../../assets/iconsvg/iconList';

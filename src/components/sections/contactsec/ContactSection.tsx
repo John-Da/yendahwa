@@ -1,4 +1,3 @@
-import React from 'react'
 import "../../../index.css"
 import "./ContactSection.css"
 import { Button } from '../../button/Button'

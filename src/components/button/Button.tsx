@@ -1,4 +1,3 @@
-import React from "react";
 import "../../index.css";
 import "./Button.css";
 import { Link } from "react-router-dom";

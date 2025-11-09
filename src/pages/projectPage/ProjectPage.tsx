@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../../index.css";
 import "./ProjectPage.css";
 import { useLocation, useParams } from "react-router-dom";
@@ -41,7 +41,7 @@ function ProjectPage() {
   return (
     <>
       <ProjectPageSec projectdetails={projectdetails} />
-      <Footer />
+      <Footer footerFor={""}/>
     </>
   );
 }
