@@ -50,7 +50,7 @@ function HeroSection({ sectionFor, profileData }: HeroSectionProps) {
               <div className="hightlightcontent">
                 <h1>Highlights</h1>
                 <div className="highlight-list">
-                  {["Design", "UX/UI", "Animation"].map((title, i) => (
+                  {["Design", "UXUI", "Animation"].map((title, i) => (
                     <div
                       key={i}
                       className="highlight-card"
