@@ -4,6 +4,17 @@ import "./TextAnimation.css";
 import gsap from "gsap";
 import SplitTextJS from "split-text-js";
 
+interface TextAnimationProps {
+  texts?: string[];
+  color?: string;
+  last?: string;
+  bold?: boolean;
+  fontSize?: number;
+  align?: "center" | "left" | "right";
+  gap?: number;
+  t?: number;
+}
+
 function TextAnimation({
   texts = ["Web Developer", "2D/3D Animator", "Software Engineer", "UX/UI Designer"],
   color = "var(--color-accent)",
@@ -13,14 +24,16 @@ function TextAnimation({
   align = "center",
   gap = 0,
   t = 2.8,
-}) {
-  const wrapperRef = useRef(null);
+}: TextAnimationProps) {
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const elements = wrapperRef.current.querySelectorAll("p");
+    const elements = wrapperRef.current?.querySelectorAll("p");
+    if (!elements) return;
+
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0 });
 
-    elements.forEach((el) => {
+    elements.forEach((el: HTMLParagraphElement) => {
       const split = new SplitTextJS(el);
 
       tl.from(

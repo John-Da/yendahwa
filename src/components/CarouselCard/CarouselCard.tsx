@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
 import "./CarouselCard.css";
+import { type Project } from "../../types/project";
+
 
 // Define the shape of a single project/game item
-interface ProjectItem {
-  id: string | number;
-  title: string;
-  image?: string;
-  category?: string;
-  description?: string;
-  tags?: string[];
-}
 
-// Props for CarouselCard
-interface CarouselCardProps {
-  projectList: ProjectItem[];
-  onSelectGame: (game: ProjectItem) => void;
-  currentProject?: ProjectItem;
+export interface CarouselCardProps {
+  projectList: Project[];
+  currentProject: Project;
+  onSelectGame: (game: Project) => void;
 }
 
 export default function CarouselCard({
@@ -30,7 +23,7 @@ export default function CarouselCard({
   // Detect current project index
   useEffect(() => {
     if (currentProject) {
-      const idx = games.findIndex((g: ProjectItem) => g.id === currentProject.id);
+      const idx = games.findIndex((g: Project) => g.id === currentProject.id);
       if (idx >= 0) setCurrentIndex(idx);
     }
   }, [currentProject, games]);
@@ -48,11 +41,9 @@ export default function CarouselCard({
       canvas.width = img.width;
       canvas.height = img.height;
       const ctx = canvas.getContext("2d");
-
-      if (!ctx) return; // ✅ prevents null errors
+      if (!ctx) return;
 
       ctx.drawImage(img, 0, 0, img.width, img.height);
-
       const { data } = ctx.getImageData(0, 0, img.width, img.height);
       let colorSum = 0;
 
@@ -101,7 +92,7 @@ export default function CarouselCard({
       </div>
 
       <div className="imgBox carouselContainer">
-        {games.map((game: ProjectItem, index: number) => (
+        {games.map((game: Project, index: number) => (
           <div key={index} className={getClassName(index)}>
             {game.image && game.image.trim() !== "" ? (
               <img src={game.image} alt={game.title} />

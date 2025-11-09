@@ -3,7 +3,18 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import "../../index.css";
 import "./GameView.css";
 import CarouselCard from "../../components/CarouselCard/CarouselCard";
-import { BACKGROUND_IMG } from "../../assets/bgImg/BackgroundImg";
+import { type Project } from "../../types/project";
+
+
+// ---------------------- Types ----------------------
+
+interface OtherText {
+  welcome?: string;
+  sources?: string;
+  [key: string]: string | undefined;
+}
+
+// ---------------------------------------------------
 
 function GameView() {
   const location = useLocation();
@@ -11,34 +22,44 @@ function GameView() {
   const query = new URLSearchParams(location.search);
   const id = query.get("id");
 
-  const [projectList, setProjectList] = useState([]);
-  const [project, setProject] = useState(null);
+  const [projectList, setProjectList] = useState<Project[]>([]);
+  const [project, setProject] = useState<Project | null>(null);
   const [showGameInfo, setShowGameInfo] = useState(true);
   const [showStartup, setShowStartup] = useState(true);
   const [showBottomSheet, setShowBottomSheet] = useState(false);
-  const [activeTab, setActiveTab] = useState("games");
-  const bottomSheetRef = useRef(null);
-  const [OTHER_TEXT, setOtherText] = useState({});
+  const [activeTab, setActiveTab] = useState<"welcome" | "games" | "sources">("games");
+  const bottomSheetRef = useRef<HTMLDivElement | null>(null);
+  const [OTHER_TEXT, setOtherText] = useState<OtherText>({});
 
-  const handleOpenTab = (tabName) => {
+  // ---------------- Handlers ----------------
+  const handleOpenTab = (tabName: "welcome" | "games" | "sources") => {
     setActiveTab(tabName);
   };
 
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (!bottomSheetRef.current) return;
+    if (!bottomSheetRef.current.contains(e.target as Node)) {
+      setShowBottomSheet(false);
+      setActiveTab("games");
+    }
+  };
+
+  const handleSelectGame = (game: Project) => {
+    setProject(game);
+    navigate(
+      `/projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`,
+      { replace: false }
+    );
+  };
+
+  // ---------------- Effects ----------------
   useEffect(() => {
-    fetch("/OtherTexts.json")
+    fetch(`${import.meta.env.BASE_URL}OtherTexts.json`)
       .then((res) => res.json())
-      .then((data) => setOtherText(data));
+      .then((data: OtherText) => setOtherText(data));
   }, []);
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (!bottomSheetRef.current) return;
-      if (!bottomSheetRef.current.contains(e.target)) {
-        setShowBottomSheet(false);
-        setActiveTab("games");
-      }
-    };
-
     if (showBottomSheet) {
       document.addEventListener("mousedown", handleOutsideClick);
     } else {
@@ -48,33 +69,26 @@ function GameView() {
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [showBottomSheet]);
 
-
   useEffect(() => {
     document.body.classList.add("gameview");
     return () => document.body.classList.remove("gameview");
   }, []);
 
   useEffect(() => {
-    fetch("/ProjectDetails.json")
+    fetch(`${import.meta.env.BASE_URL}ProjectDetails.json`)
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: Project[]) => {
         const games = data.filter((item) => item.category === "games");
         setProjectList(games);
 
         const selected = id ? games.find((p) => String(p.id) === id) : games[0];
-        setProject(selected);
+        setProject(selected || null);
 
         setTimeout(() => setShowStartup(false), 5000);
       });
   }, [id]);
 
-  const handleSelectGame = (game) => {
-    setProject(game);
-    navigate(`/projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`, {
-      replace: false,
-    });
-  };
-
+  // ---------------- Render ----------------
   if (!project) return <div>Loading...</div>;
 
   return (
@@ -91,7 +105,9 @@ function GameView() {
         <div className="gameViewContent">
           {/* Header */}
           <div className="gameViewContent-header">
-            <Link className="game-esc" to="/projects/games">ESC</Link>
+            <Link className="game-esc" to="/projects/games">
+              ESC
+            </Link>
             <button onClick={() => setShowGameInfo((prev) => !prev)}>
               {showGameInfo ? "Hide Description" : "Show Description"}
             </button>
@@ -99,7 +115,9 @@ function GameView() {
 
           {/* Main Content Grid */}
           <div
-            className={`gameViewContent-grid ${!showGameInfo ? "expanded-view" : ""}`}
+            className={`gameViewContent-grid ${
+              !showGameInfo ? "expanded-view" : ""
+            }`}
           >
             {/* Carousel (Left) */}
             {showGameInfo && (
@@ -115,7 +133,7 @@ function GameView() {
               <div className="game-screen">
                 <iframe
                   key={project.id || project.title}
-                  src={project.data.demoLink}
+                  src={project.data?.demoLink}
                   frameBorder="0"
                   allowFullScreen
                   title={project.title}
@@ -131,18 +149,20 @@ function GameView() {
 
                 <div className="tagsbox">
                   <p>Tags:</p>
-                  {project.tags.map((tag, index) => (
+                  {project.tags?.map((tag, index) => (
                     <span key={index}>{tag}</span>
                   ))}
                 </div>
-
-                <a href={project.data.sourceCode} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={project.data?.sourceCode}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   View on GitHub
                 </a>
               </div>
             )}
           </div>
-
 
           {/* Footer Button & Bottom Sheet */}
           <div className="footer">
@@ -180,16 +200,14 @@ function GameView() {
                   {activeTab === "welcome" && (
                     <div className="homeTab fadeIn">
                       <h1>Welcome</h1>
-                      <p>
-                        {OTHER_TEXT.welcome}
-                      </p>
+                      <p>{OTHER_TEXT.welcome}</p>
                     </div>
                   )}
 
                   {activeTab === "games" && (
                     <div className="gamesTab fadeIn">
                       <div className="gameList-grid">
-                        {projectList.map((game, i) => (
+                        {projectList.map((game: Project, i: number) => (
                           <div
                             key={i}
                             className="game"
@@ -213,9 +231,7 @@ function GameView() {
                   {activeTab === "sources" && (
                     <div className="sourcesTab fadeIn">
                       <h1>Sources</h1>
-                      <p>
-                        {OTHER_TEXT.sources}
-                      </p>
+                      <p>{OTHER_TEXT.sources}</p>
                     </div>
                   )}
                 </div>

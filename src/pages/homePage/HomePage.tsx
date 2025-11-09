@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import "../../index.css";
-import "./HomePage.css"
+import "./HomePage.css";
 import HeroSection from '../../components/sections/herosec/HeroSection';
 import ProjectPageSec from "../../components/sections/projectsec/ProjectSec";
 import Footer from "../../components/footer/Footer";
 import ContactSection from "../../components/sections/contactsec/ContactSection";
 import { useLocation } from "react-router-dom";
+import {type Profile, type Skill } from "../../types/profile";
+
+
+// --------------------------------------
 
 function HomePage() {
-  const [profile, setProfile] = useState(null);
-  const [project, setProject] = useState(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [project, setProject] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   const location = useLocation();
@@ -17,8 +21,8 @@ function HomePage() {
   useEffect(() => {
     setLoading(true);
     Promise.all([
-      fetch('/ProfileInfo.json').then(res => res.ok ? res.json() : Promise.reject('Profile fetch failed')),
-      fetch('/ProjectDetails.json').then(res => res.ok ? res.json() : Promise.reject('Project fetch failed'))
+      fetch(`${import.meta.env.BASE_URL}ProfileInfo.json`).then(res => res.ok ? res.json() : Promise.reject('Profile fetch failed')),
+      fetch(`${import.meta.env.BASE_URL}ProjectDetails.json`).then(res => res.ok ? res.json() : Promise.reject('Project fetch failed'))
     ])
       .then(([profileData, projectData]) => {
         setTimeout(() => {
@@ -39,24 +43,19 @@ function HomePage() {
     <>
       {profile && (
         <>
-          <HeroSection 
-            sectionFor={'home'} 
-            profileData={profile}
-          />
-          <HeroSection 
-            sectionFor={'about'}
-            profileData={profile}
-          />
+          <HeroSection sectionFor={'home'} profileData={profile} />
+          <HeroSection sectionFor={'about'} profileData={profile} />
         </>
       )}
-      {project && <ProjectPageSec sectionFor={"home"} displayAll={false} projectdetails={project} />}
+
+      {project.length > 0 && <ProjectPageSec sectionFor={"home"} displayAll={false} projectdetails={project} />}
       
       {profile?.skills && (
         <div className="usedtoolicons">
           <h2>Tools & Software I Use</h2>
           <hr />
           <div className="iconsbox">
-            {profile.skills.map((skill, index) => (
+            {profile.skills.map((skill: Skill, index: number) => (
               <div className="skillusedicons" key={index}>
                 <img src={skill.icon} alt={skill.name} />
               </div>
@@ -65,7 +64,6 @@ function HomePage() {
         </div>
       )}
 
-      
       <ContactSection />
       <Footer footerFor={"home"} />
     </>

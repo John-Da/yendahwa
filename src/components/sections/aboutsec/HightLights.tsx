@@ -1,33 +1,42 @@
-import { useEffect, useState } from 'react'
-import "../../../index.css"
-import "./HightLights.css"
+import { useEffect } from 'react';
+import "../../../index.css";
+import "./HightLights.css";
 import TextAnimation from '../../txtAni/TextAnimation';
 import { MENUICON } from '../../../assets/iconsvg/iconList';
 
+// Define prop types for clarity
+interface ProfileProps {
+  profileData?: {
+    aboutText?: string;
+    profileImg?: string;
+    [key: string]: any; // in case there are more fields you’ll add later
+  };
+  onClose: () => void;
+}
 
-function Profile({ profileData, onClose }) {
+function Profile({ profileData, onClose }: ProfileProps) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = 'auto'; };
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, []);
 
-  if (!profileData) return null; 
+  if (!profileData) return null;
 
   return (
-    <>
     <div className="profileDetailView-container" onClick={onClose}>
       <div className="profile-content" onClick={(e) => e.stopPropagation()}>
         
         {/* HEADER */}
         <div className="profileView-header">
-          <TextAnimation align='left' />
+          <TextAnimation align="left" />
           <button className="close-box" onClick={onClose}>
             <img src={MENUICON['cross']} alt="close" />
           </button>
         </div>
 
         <div className="first-section">
-
           {/* DESCRIPTION */}
           <div className="profileDescription">
             <h1>Hi,</h1>
@@ -44,7 +53,7 @@ function Profile({ profileData, onClose }) {
           <div className="profileImgBox">
             <div className="profileImage">
               {profileData.profileImg ? (
-                <img src={profileData.profileImg} alt={"profile image"} />
+                <img src={profileData.profileImg} alt="profile image" />
               ) : (
                 <p>Empty Image</p>
               )}
@@ -70,11 +79,11 @@ function Profile({ profileData, onClose }) {
             </div>
           </div>
         </div>
+
         <div className="profileView-footer"></div>
       </div>
     </div>
-  </>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

@@ -4,7 +4,12 @@ import "./SlideButton.css";
 import { useNavigate } from "react-router-dom";
 import { BACKGROUND_IMG } from "../../assets/bgImg/BackgroundImg";
 
-function SliderButton({ path, btnName }) {
+interface SliderButtonProps {
+  path: string;
+  btnName: string;
+}
+
+function SliderButton({ path, btnName }: SliderButtonProps) {
   const navigate = useNavigate();
   const trackRef = useRef<HTMLDivElement | null>(null);
   const btnRef = useRef<HTMLDivElement | null>(null);
@@ -50,16 +55,12 @@ function SliderButton({ path, btnName }) {
       text.style.opacity = `${1 - progress}`;
     }
 
-    // ✅ Trigger finish animation if reached end
     if (newLeft >= track.width - btn.width - 5) {
       setIsCompleted(true);
       setIsDragging(false);
-
-      // Snap to end & glow
       btnRef.current.style.left = `${track.width - btn.width - 4}px`;
       btnRef.current.classList.add("glow");
 
-      // Small delay before navigating
       setTimeout(() => {
         navigate(path);
       }, 500);
@@ -71,7 +72,6 @@ function SliderButton({ path, btnName }) {
 
     const text = trackRef.current.querySelector("p");
 
-    // Snap back if not completed
     btnRef.current.style.transition = "left 0.3s ease";
     btnRef.current.style.left = "4px";
     if (text) text.style.opacity = "1";
