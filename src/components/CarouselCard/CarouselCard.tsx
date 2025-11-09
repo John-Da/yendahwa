@@ -80,7 +80,11 @@ export default function CarouselCard({ projectList, onSelectGame, currentProject
       <div className="imgBox carouselContainer">
         {games.map((game, index) => (
           <div key={index} className={getClassName(index)}>
-            <img src={game.image} alt={game.title} />
+            {game.image && game.image.trim() !== "" ? (
+              <img src={game.image} alt={game.title} />
+            ) : (
+              <p>Empty Image</p>
+            )}
           </div>
         ))}
       </div>

@@ -161,19 +161,15 @@ function ProjectPageSec({ sectionFor, projectdetails, displayAll = false, itemSt
               <p>{selectedProject.description || 'No description available.'}</p>
               {selectedProject.category === "games"? (
               <div className="demonBtn">
-                <Button
-                  onClick={handleCloseDetail}
-                  children={"Play"}
-                  btnType={"gBtn"}
-                  btnSize={"gBtn--medium"}
-                  btnStyle={"gBtn--primary"}
+                <Button path={selectedProject.data.sourceCode} onClick={handleCloseDetail} children={"GitHub"} btnType={"btn"} btnSize={"btn--medium"} btnStyle={"btn--primary"} />
+                <Button onClick={handleCloseDetail} children={"Play"} btnType={"gBtn"} btnSize={"gBtn--medium"} btnStyle={"gBtn--primary"}
                   path={`${PATHTO.gamemode.path}?game=${encodeURIComponent(selectedProject.title)}&id=${selectedProject.id}`}
                 />
               </div>
               ):(
               <div className="demonBtn">
-                <Button path={SOCIALLINKS.gh} onClick={handleCloseDetail} children={"GitHub"} btnType={"btn"} btnSize={"btn--medium"} btnStyle={"btn--primary"} />
-                <Button path={SOCIALLINKS.gh} onClick={handleCloseDetail} children={"Live Demo"} btnType={"btn"} btnSize={"btn--medium"} btnStyle={"btn--outline"} />
+                <Button path={selectedProject.data.sourceCode} onClick={handleCloseDetail} children={"GitHub"} btnType={"btn"} btnSize={"btn--medium"} btnStyle={"btn--primary"} />
+                <Button path={selectedProject.data.demoLink} onClick={handleCloseDetail} children={"Live Demo"} btnType={"btn"} btnSize={"btn--medium"} btnStyle={"btn--outline"} />
               </div>
               )}
             </div>

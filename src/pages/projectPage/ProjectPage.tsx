@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "../../index.css";
 import "./ProjectPage.css";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ProjectPageSec from "../../components/sections/projectsec/ProjectSec";
 import Footer from "../../components/footer/Footer";
 
 function ProjectPage() {
   const [projectDetail, setProjectDetail] = useState(null);
   const { category, subcategory } = useParams();
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
+    setLoading(true);
     fetch('/ProjectDetails.json')
       .then(res => res.json())
       .then(data => {
         setTimeout(() => {
           setProjectDetail(data);
+          setLoading(false);
         }, 500);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
       });
-  }, []);
+  }, [location.pathname]);
 
-  useEffect(() => {
-    console.log("ProjectPage mounted", category, subcategory);
-  }, [category, subcategory]);
 
 
   if (!projectDetail) return <div className="loading"></div>;

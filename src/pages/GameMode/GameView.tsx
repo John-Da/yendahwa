@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import "../../index.css";
 import "./GameView.css";
 import CarouselCard from "../../components/CarouselCard/CarouselCard";
+import { BACKGROUND_IMG } from "../../assets/bgImg/BackgroundImg";
 
 function GameView() {
   const location = useLocation();
+  const navigate = useNavigate();
   const query = new URLSearchParams(location.search);
   const id = query.get("id");
 
@@ -15,12 +17,9 @@ function GameView() {
   const [showStartup, setShowStartup] = useState(true);
   const [showBottomSheet, setShowBottomSheet] = useState(false);
   const [activeTab, setActiveTab] = useState("games");
-
   const bottomSheetRef = useRef(null);
-
   const [OTHER_TEXT, setOtherText] = useState({});
 
-  // Handle active tab
   const handleOpenTab = (tabName) => {
     setActiveTab(tabName);
   };
@@ -31,7 +30,6 @@ function GameView() {
       .then((data) => setOtherText(data));
   }, []);
 
-  // Handle click outside bottom sheet
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (!bottomSheetRef.current) return;
@@ -51,13 +49,11 @@ function GameView() {
   }, [showBottomSheet]);
 
 
-  // Add page style class
   useEffect(() => {
     document.body.classList.add("gameview");
     return () => document.body.classList.remove("gameview");
   }, []);
 
-  // Load project data
   useEffect(() => {
     fetch("/ProjectDetails.json")
       .then((res) => res.json())
@@ -68,13 +64,15 @@ function GameView() {
         const selected = id ? games.find((p) => String(p.id) === id) : games[0];
         setProject(selected);
 
-        // startup animation duration
         setTimeout(() => setShowStartup(false), 5000);
       });
   }, [id]);
 
   const handleSelectGame = (game) => {
     setProject(game);
+    navigate(`/projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`, {
+      replace: false,
+    });
   };
 
   if (!project) return <div>Loading...</div>;
@@ -100,24 +98,24 @@ function GameView() {
           </div>
 
           {/* Main Content Grid */}
-          <div className="gameViewContent-grid">
+          <div
+            className={`gameViewContent-grid ${!showGameInfo ? "expanded-view" : ""}`}
+          >
             {/* Carousel (Left) */}
-            <div className="fixed-grid">
-              {showGameInfo && (
-                <CarouselCard
-                  projectList={projectList}
-                  onSelectGame={handleSelectGame}
-                  currentProject={project}
-                />
-              )}
-            </div>
+            {showGameInfo && (
+              <CarouselCard
+                projectList={projectList}
+                onSelectGame={handleSelectGame}
+                currentProject={project}
+              />
+            )}
 
             {/* Center Game Screen */}
             <div className="gameScreenView">
               <div className="game-screen">
                 <iframe
                   key={project.id || project.title}
-                  src={project.pathTo}
+                  src={project.data.demoLink}
                   frameBorder="0"
                   allowFullScreen
                   title={project.title}
@@ -126,21 +124,25 @@ function GameView() {
             </div>
 
             {/* Game Info (Right) */}
-            <div className="fixed-grid">
-              {showGameInfo && (
-                <div className="gameInfo">
-                  <h1>{project.title}</h1>
-                  <p>{project.description}</p>
-                  <div className="tagsbox">
-                    <p>Tags:</p>
-                    {project.tags.map((tag, index) => (
-                      <span key={index}>{tag}</span>
-                    ))}
-                  </div>
+            {showGameInfo && (
+              <div className="gameInfo">
+                <h1>{project.title}</h1>
+                <p>{project.description}</p>
+
+                <div className="tagsbox">
+                  <p>Tags:</p>
+                  {project.tags.map((tag, index) => (
+                    <span key={index}>{tag}</span>
+                  ))}
                 </div>
-              )}
-            </div>
+
+                <a href={project.data.sourceCode} target="_blank" rel="noopener noreferrer">
+                  View on GitHub
+                </a>
+              </div>
+            )}
           </div>
+
 
           {/* Footer Button & Bottom Sheet */}
           <div className="footer">
@@ -196,8 +198,12 @@ function GameView() {
                               setShowBottomSheet(false);
                             }}
                           >
-                            <img src={game.image} alt={game.title} />
-                            <p>{game.title}</p>
+                            {game.image && game.image.trim() !== "" ? (
+                              <img src={game.image} alt={game.title} />
+                            ) : (
+                              <p className="emptyImage">Empty Image</p>
+                            )}
+                            <p className="gameTitle">{game.title}</p>
                           </div>
                         ))}
                       </div>

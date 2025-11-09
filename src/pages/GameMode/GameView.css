@@ -60,7 +60,7 @@
   align-items: center;
   justify-content: space-between;
   height: 4.5rem;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   border-bottom: 1px solid var(--color-link);
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
@@ -79,7 +79,7 @@
 }
 
 .gameViewContent-header .game-esc {
-  padding: 0.7rem 2.5rem;
+  padding: 0.6rem 2.5rem;
   text-decoration: none;
 }
 
@@ -98,16 +98,39 @@
 /* =============================== */
 /* GAME LAYOUT */
 /* =============================== */
+/* Default layout */
 .gameViewContent-grid {
   flex: 1;
   display: grid;
   grid-template-columns: 300px 1fr 300px;
   gap: 1rem;
   padding: 1rem;
+  transition: all 0.3s ease;
 }
 
-.fixed-grid {
-  width: 300px;
+/* When showGameInfo is false */
+.expanded-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0.5rem;
+}
+
+/* Center game screen in expanded view */
+.expanded-view .gameScreenView {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.expanded-view .game-screen {
+  width: 90%;
+  max-width: 1600px;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  transition: all 0.3s ease;
 }
 
 /* =============================== */
@@ -115,24 +138,34 @@
 /* =============================== */
 .gameScreenView {
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  background: radial-gradient(circle at center, #111 0%, #000 100%);
-  overflow: hidden;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 .game-screen {
+  position: relative;
   width: 100%;
+  max-width: 1280px;
   height: 100%;
   overflow: hidden;
+  border-radius: 15px;
+  background: #000;
 }
 
 .game-screen iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border: none;
 }
+
+
 
 /* =============================== */
 /* GAME INFO PANEL */
@@ -182,6 +215,29 @@
   transform: scale(1.05);
   box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
 }
+
+.gameInfo a {
+  display: inline-block;
+  background: rgba(0, 255, 255, 0.1);
+  color: #00ffff;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.gameInfo a:hover {
+  background: rgba(0, 255, 255, 0.2);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.7), 0 4px 12px rgba(0, 255, 255, 0.4);
+  color: #fff;
+}
+
+
 
 /* =============================== */
 /* FOOTER BUTTON */
@@ -415,8 +471,8 @@
   object-fit: cover;
 }
 
-/* Hide title initially */
-.gamesTab .gameList-grid .game p {
+/* title only */
+.gamesTab .gameList-grid .game .gameTitle {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -437,11 +493,25 @@
   text-overflow: ellipsis;
 }
 
-/* Show title on hover */
-.gamesTab .gameList-grid .game:hover p {
+/* show title on hover */
+.gamesTab .gameList-grid .game:hover .gameTitle {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Empty image placeholder */
+.gamesTab .gameList-grid .game .emptyImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
 
 
 /* =============================== */
