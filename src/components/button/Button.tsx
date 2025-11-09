@@ -1,6 +1,6 @@
 import "../../index.css";
 import "./Button.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import React, { type ButtonHTMLAttributes } from "react";
 
 const STYLES = ["btn--primary", "btn--outline", "gBtn--primary", "gBtn--outline"];
