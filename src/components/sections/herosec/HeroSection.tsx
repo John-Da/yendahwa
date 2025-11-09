@@ -55,7 +55,7 @@ function HeroSection({ sectionFor, profileData }: HeroSectionProps) {
                       key={i}
                       className="highlight-card"
                       onClick={() =>
-                        navigate(`${import.meta.env.BASE_URL}highlights/${title.toLowerCase().replace(/\s+/g, '-')}`)
+                        navigate(`/projects/highlights/${title.toLowerCase().replace(/\s+/g, '-')}`)
                       }
                     >
                       <h2>{title}</h2>

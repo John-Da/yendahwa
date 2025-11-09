@@ -4,12 +4,12 @@ import HomePage from './pages/homePage/HomePage';
 import ProjectPage from './pages/projectPage/ProjectPage';
 
 export const PATHTO = {
-  homepage: { path: `${import.meta.env.BASE_URL}`, component: HomePage },
-  aboutpage: { path: `${import.meta.env.BASE_URL}about`, component: AboutPage },
-  projectpage: { path: `${import.meta.env.BASE_URL}projects`, component: ProjectPage },
-  gamemode: { path: `${import.meta.env.BASE_URL}projects/games/play`, component: GameView },
-  projectsubcat: { path: `${import.meta.env.BASE_URL}projects/:category/:subcategory`, component: ProjectPage },
-  projectcat: { path: `${import.meta.env.BASE_URL}projects/:category`, component: ProjectPage },
+  homepage: { path: `/`, component: HomePage },
+  aboutpage: { path: `/about`, component: AboutPage },
+  projectpage: { path: `/projects`, component: ProjectPage },
+  gamemode: { path: `/projects/games/play`, component: GameView },
+  projectsubcat: { path: `/projects/:category/:subcategory`, component: ProjectPage },
+  projectcat: { path: `/projects/:category`, component: ProjectPage },
 };
 
 export const SOCIALLINKS = {

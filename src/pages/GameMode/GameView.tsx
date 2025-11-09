@@ -47,7 +47,7 @@ function GameView() {
   const handleSelectGame = (game: Project) => {
     setProject(game);
     navigate(
-      `${import.meta.env.BASE_URL}projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`,
+      `/projects/games/play?game=${encodeURIComponent(game.title)}&id=${game.id}`,
       { replace: false }
     );
   };
@@ -105,7 +105,7 @@ function GameView() {
         <div className="gameViewContent">
           {/* Header */}
           <div className="gameViewContent-header">
-            <Link className="game-esc" to={`${import.meta.env.BASE_URL}projects/games`}>
+            <Link className="game-esc" to={`/projects/games`}>
               ESC
             </Link>
             <button onClick={() => setShowGameInfo((prev) => !prev)}>
