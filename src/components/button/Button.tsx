@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   if (path) {
     return (
-      <Link to={path}>
+      <Link to={path} target="_blank" rel="noopener noreferrer">
         <button
           className={`${btnType} ${checkButtonStyle} ${checkButtonSize}`}
           onClick={onClick}
