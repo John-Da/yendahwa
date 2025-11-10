@@ -1,6 +1,5 @@
 import "../../../index.css";
 import "./ContactSection.css";
-import { Button } from "../../button/Button";
 
 function ContactSection() {
   return (
@@ -26,10 +25,9 @@ function ContactSection() {
               <textarea placeholder="Your Message" required></textarea>
             </div>
 
-            {/* Use custom Button */}
-            <Button type="submit" className="contact-btn">
+            <button type="submit" className="contact-btn">
               Send Message
-            </Button>
+            </button>
           </form>
         </div>
       </div>

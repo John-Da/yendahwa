@@ -1,16 +1,23 @@
-import AboutPage from './pages/AboutPage/AboutPage';
+
 import GameView from './pages/GameMode/GameView';
 import HomePage from './pages/homePage/HomePage';
 import ProjectPage from './pages/projectPage/ProjectPage';
+import Hightlights from './pages/HightlightsPage/Hightlights';
+import AboutPage from './pages/AboutPage/AboutPage';
+
 
 export const PATHTO = {
   homepage: { path: `/`, component: HomePage },
   aboutpage: { path: `/about`, component: AboutPage },
   projectpage: { path: `/projects`, component: ProjectPage },
+
+  projecthightlights: { path: `/projects/hightlights/:name`, component: Hightlights },
+
   gamemode: { path: `/projects/games/play`, component: GameView },
   projectsubcat: { path: `/projects/:category/:subcategory`, component: ProjectPage },
   projectcat: { path: `/projects/:category`, component: ProjectPage },
 };
+
 
 export const SOCIALLINKS = {
     fb: "",

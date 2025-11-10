@@ -149,6 +149,8 @@ function NavBar() {
   const author = profile.author.toLowerCase();
   const getNavbarType = (pathname: string) => {
     if (pathname.startsWith(`/projects/games/play`)) return "none";
+    if (pathname.startsWith(`/projects/hightlights`)) return "none";
+    if (pathname.startsWith(`/about`)) return "none";
     if (pathname.startsWith(`/projects`)) return "projects";
     return "home";
   };
