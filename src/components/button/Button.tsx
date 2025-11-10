@@ -14,6 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>  {
   btnSize?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   path?: string;
+  target?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -24,13 +25,14 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   btnSize,
   path = "/",
+  target = "",
 }) => {
   const checkButtonStyle = STYLES.includes(btnStyle || "") ? btnStyle : STYLES[0];
   const checkButtonSize = SIZES.includes(btnSize || "") ? btnSize : SIZES[0];
 
   if (path) {
     return (
-      <Link to={path}>
+      <Link to={path} target={target}>
         <button
           className={`${btnType} ${checkButtonStyle} ${checkButtonSize}`}
           onClick={onClick}
