@@ -1,9 +1,9 @@
 [
   {
     "id": 6,
-    "title": "Object Detection React Tfjs",
+    "title": "COCO SSD Object Detection TFJS",
     "category": "web",
-    "tags": ["ai model", "tfjs", "react", "typescript"],
+    "tags": ["ai model","tensorflow", "tfjs", "react", "typescript"],
     "editorTool":"vscode",
     "image": "",
     "data":{
