@@ -190,6 +190,7 @@
 }
 
 .pcard-img p{
+    white-space: pre-line;
     text-align: center;
 }
 
@@ -225,6 +226,7 @@
     color: var(--color-text-secondary);
     margin-bottom: 0.5rem;
     line-height: 1.4;
+    white-space: pre-line;
     text-align: left;
 }
 

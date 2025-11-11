@@ -102,6 +102,7 @@
 .detailDescription p {
     margin-bottom: 1rem;
     color: var(--color-text-primary);
+    white-space: pre-line;
 }
 
 .detailDescription .demonBtn{

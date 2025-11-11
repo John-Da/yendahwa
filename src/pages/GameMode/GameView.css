@@ -189,6 +189,7 @@
   font-size: 1.05rem;
   color: var(--color-text-secondary);
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 .tagsbox {
