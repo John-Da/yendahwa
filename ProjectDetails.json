@@ -1,5 +1,18 @@
 [
   {
+    "id": 7,
+    "title": "Basic Math Game",
+    "category": "web",
+    "tags": ["ai model","tensorflow", "tfjs", "react", "github", "typescript"],
+    "editorTool":"vscode",
+    "image": "",
+    "data":{
+      "demoLink":"https://john-da.github.io/Basic-Math/",
+      "sourceCode":"https://github.com/John-Da/Basic-Math/"
+    },
+    "description": "This game is Basic Group Project of the Course, and of course, this is not very perfect one, but our first mile stone. By this group project, we understood how to construct the game using html and designing with css. JavaScript also plays important role to function well enough to give smooth performance such as calculating, generating random problems and multiple different answers to choose. It's fun and enjoyable mini game. Hope you enjoy playing it too. Thank you.\n\nDeveloped by JoB, DaDa, Cat"
+  },
+  {
     "id": 6,
     "title": "COCO SSD Object Detection TFJS",
     "category": "web",
