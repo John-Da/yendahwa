@@ -3,7 +3,7 @@
     "id": 7,
     "title": "Basic Math Game",
     "category": "web",
-    "tags": ["ai model","tensorflow", "tfjs", "react", "github", "typescript"],
+    "tags": ["HTML","CSS", "JavaScript"],
     "editorTool":"vscode",
     "image": "",
     "data":{
@@ -16,7 +16,7 @@
     "id": 6,
     "title": "COCO SSD Object Detection TFJS",
     "category": "web",
-    "tags": ["ai model","tensorflow", "tfjs", "react", "github", "typescript"],
+    "tags": ["Ai Model","Tensorflow", "TFJS", "React", "Github", "TypeScript"],
     "editorTool":"vscode",
     "image": "",
     "data":{
@@ -29,7 +29,7 @@
     "id": 5,
     "title": "My First Pico8",
     "category": "games",
-    "tags": ["pico8"],
+    "tags": ["Pico8"],
     "editorTool":"pico8",
     "image": "/games/myfirstgame.p8.png",
     "data":{
@@ -54,7 +54,7 @@
     "id": 3,
     "title": "DetectTO - Mobile Application",
     "category": "software",
-    "tags": ["android", "object detection", "apk", "onnxruntime"],
+    "tags": ["Android", "Object Detection", "apk", "Onnxruntime"],
     "image": "",
     "data":{
       "demoLink":"",
@@ -66,7 +66,7 @@
     "id": 2,
     "title": "Technova",
     "category": "web",
-    "tags": ["html", "css", "javascript", "bootstrap 4", "git"],
+    "tags": ["HTML", "CSS", "JavaScript", "Bootstrap 4", "Git"],
     "image": "",
     "data":{
       "demoLink":"https://john-da.github.io/technova/",
@@ -78,7 +78,7 @@
     "id": 1,
     "title": "DetectTO - Mobile Web-Based APK",
     "category": "software",
-    "tags": ["react native", "flask", "python", "typescript", "object detection", "onnxruntime"],
+    "tags": ["React Native", "Flask", "Python", "TypeScript", "Object Detection", "Onnxruntime"],
     "image": "",
     "data":{
       "demoLink":"",
